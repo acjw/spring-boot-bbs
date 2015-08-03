@@ -3,10 +3,12 @@ package org.saoft.bbs.service;
 import org.saoft.bbs.dao.ReplyRepository;
 import org.saoft.bbs.entities.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by saoft on 15/8/3.
  */
+@Service
 public class ReplyServiceImpl implements ReplyService {
 
     @Autowired
