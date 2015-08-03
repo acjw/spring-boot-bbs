@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>markdown4j</short-name>
+    <uri>http://saoft.org/markdown4j/tags</uri>
+
+    <!-- Invoke 'Generate' action to add tags or functions -->
+    <tag>
+        <description>Custom tag to markdown4j  </description>
+        <name>markdown4j</name>
+        <tag-class>org.saoft.jstl.Markdown4jTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>input</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

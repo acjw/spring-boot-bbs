@@ -36,7 +36,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Page<Topic> findAll(Pageable pageable) {
-        return null;
+        return repository.findAll(pageable);
     }
 
 

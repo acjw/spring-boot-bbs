@@ -46,11 +46,6 @@ public class TopicController extends GlobalController {
     @ApiOperation(value = "查看一个主题",response = TopicViewObject.class)
     String topicDetail(@PathVariable Long id,Model model) {
         Topic topic = topicService.findOne(id);
-        try {
-            topic.setContent(new Markdown4jProcessor().process(topic.getContent()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         model.addAttribute("topic", topic);
         return "topic";
     }

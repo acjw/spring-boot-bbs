@@ -17,7 +17,11 @@ import java.util.Date;
 @Table(name="user")
 public class User extends GlobalEntity {
 
-    private Boolean official;/**官方用户*/
+    public enum Level{
+        start,profile
+    }
+
+    private String userLevel;/**官方用户 vip 普通*/
     private String username;/**用户名*/
     private String password;/**密码*/
     private String nickname;/**昵称*/
@@ -45,6 +49,15 @@ public class User extends GlobalEntity {
         this.points = 0;
         this.registerDateTime = new Date();
         this.lastLoginDateTime = null;
+        int seed = ((int)(Math.random()*10))/3;
+        if (seed == 1) {
+            this.userLevel = Level.profile.toString();
+        }else if (seed == 2) {
+            this.userLevel = Level.start.toString();
+        }else{
+            this.userLevel = "";
+        }
+
     }
 
     @Override

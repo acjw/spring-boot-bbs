@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ocpsoft" uri="http://ocpsoft.org/prettytime/tags" %>
+<%@ taglib prefix="markdown4j" uri="http://saoft.org/markdown4j/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,118 +25,15 @@
 <jsp:include page="public/navbar.jsp"></jsp:include>
 <div id='main'>
   <div id='sidebar'>
-    <div class='panel'>
-      <div class='header'>
-        <span class='col_fade'>作者</span>
-      </div>
-      <div class='inner'>
-        <div class='user_card'>
-          <div>
-            <a class='user_avatar' href="/user/${topic.author.id}">
-              <img src="/public/avatar/77b85c0990841f394600a1590e2d931a" title="${topic.author.nickname}"/>
-            </a>
-            <span class='user_name'><a class='dark' href="/user/${topic.author.id}">${topic.author.nickname}</a></span>
-            <div class='board clearfix'>
-              <div class='floor'>
-                <span class='big'>${topic.author.points}</span> 积分
-              </div>
-            </div>
-            <div class="space clearfix"></div>
-    <span class="signature">
-      ${topic.author.signature}
-    </span>
-          </div>
-        </div>
-        <script>
-          $(document).ready(function () {
-            $('.follow_btn').click(function () {
-              var $me = $(this);
-              var action = $me.attr('action');
-              var params = {
-                follow_id: '5555a6715b6959756e0f5698',
-                _csrf: 'K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'
-              };
-              $.post('/user/' + action, params, function (data) {
-                if (data.status === 'success') {
-                  var $btns = $('.follow_btn');
-                  if (action === 'follow') {
-                    $btns.html('取消关注');
-                    $btns.attr('action', 'un_follow');
-                  } else {
-                    $btns.html('加入关注');
-                    $btns.attr('action', 'follow');
-                  }
-                  $btns.toggleClass('btn-success');
-                }
-              }, 'json');
-            });
-          });
-        </script>
-
-
-      </div>
-    </div>
-
-
-
-    <!--
-    <div class='panel'>
-      <div class='inner ads'>
-
-
-
-          <a href="http://www.licaifan.com/activity/page?view=fanlive_entrance" target="_blank" class="banner sponsor_outlink"
-        data-label="Fan Live">
-            <img src="/public/images/fanlive.jpg">
-          </a>
-
-      </div>
-    </div>
-    -->
-
-
-
-    <div class='panel'>
-      <div class='header'>
-        <span class='col_fade'>作者其它话题</span>
-      </div>
-      <div class='inner'>
-
-        <ul class='unstyled'>
-          <li>
-            <div><a class='dark topic_title' href="/topic/55bb1c11b992cd0878558705" title="银行卡怎么就不能进账呢">银行卡怎么就不能进账呢</a>
-            </div>
-          </li>
-          <li>
-            <div><a class='dark topic_title' href="/topic/5566b3aa2a0d41d85f16f940" title="希望的第一步终于到了">希望的第一步终于到了</a>
-            </div>
-          </li>
-          <li>
-            <div><a class='dark topic_title' href="/topic/55993d48213857e3229086c4" title="手机投资1%的加息为什么没有体现？怎样才能体现？">手机投资1%的加息为什么没有体现？怎样才能体现？</a>
-            </div>
-          </li>
-          <li>
-            <div><a class='dark topic_title' href="/topic/55851663213857e322907dd2" title="合同要不要签订呀？">合同要不要签订呀？</a>
-            </div>
-          </li>
-          <li>
-            <div><a class='dark topic_title' href="/topic/557fd17b1cf85bb773d0c5c7" title="恭喜你们中了大奖">恭喜你们中了大奖</a>
-            </div>
-          </li>
-
-        </ul>
-
-      </div>
-    </div>
+      <jsp:include page="public/author.jsp"/>
+      <jsp:include page="public/author_other_topic.jsp"/>
 
     <div class='panel'>
       <div class='header'>
         <span class='col_fade'>无人回复的话题</span>
       </div>
       <div class='inner'>
-
         <p>无</p>
-
       </div>
     </div>
   </div>
@@ -143,16 +42,13 @@
     <div class='panel'>
       <div class='header topic_header'>
       <span class="topic_full_title">
-
         ${topic.title}
       </span>
         <div class="action">
           <span class='span-common span-success' id='collect_btn' action='collect'>加入收藏</span>
         </div>
         <div class="changes">
-        <span>
-          发布于 2天前
-        </span>
+        <span><ocpsoft:prettytime date="${topic.modifyDateTime}" locale="zh_CN" /></span>
         <span class="topic_">
           作者 <a href="/user/${topic.author.id}">${topic.author.nickname}</a>
         </span>
@@ -163,7 +59,6 @@
         </div>
 
         <div id="manage_topic">
-
         </div>
 
       </div>
@@ -171,8 +66,7 @@
 
         <div class='topic_content'>
           <div class="markdown-text">
-            <p>${topic.content}</p>
-            ${topic.content}
+              <markdown4j:markdown4j input="${topic.content}"/>
           </div>
         </div>
         <div class="share" style="display: none">
@@ -190,7 +84,6 @@
         </div>
       </div>
     </div>
-
     <div class='panel'>
       <div class='header'>
         <span class='col_fade'>13 回复</span>
@@ -204,7 +97,6 @@
           <a href="/user/338223" class="user_avatar">
             <img src="/public/avatar/47d2d4209a913f45689ab913162c9e2a"
                  title="139******37" height="30" width="30" /></a>
-
           <div class='user_info'>
             <a class='dark reply_author' href="/user/338223">
               139******37
@@ -291,16 +183,13 @@
           </div>
         </div>
         <div class='reply_content from-188162'>
-          <div class="markdown-text"><p>醉了！</p>
-          </div>
+          <div class="markdown-text"><p>醉了！</p></div>
         </div>
         <div class='clearfix'>
           <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
+            <form class='reply2_form' action='/${topic.id}/reply' method='post'>
               <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
               <input type='hidden' name='reply_id' value='55b88c8eb992cd0878558525'/>
-
               <div class='markdown_editor in_editor'>
                 <div class='markdown_in_editor'>
             <textarea class='span8 editor reply_editor'
@@ -319,22 +208,18 @@
           </div>
         </div>
       </div>
-      <div class='cell reply_area reply_item  user_star
-  '
-           id="reply3" reply_id="55b896f8b992cd087855852d" reply_to_id="">
+      <div class='cell reply_area reply_item  user_star' id="reply3" reply_id="55b896f8b992cd087855852d" reply_to_id="">
         <a class="anchor" id="55b896f8b992cd087855852d"></a>
-
         <div class='author_content'>
           <a href="/user/267735" class="user_avatar">
             <img src="/public/avatar/e9d6fe881e37c876f3937d5d7957693c"
                  title="残影哥哥" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/267735">
-              残影哥哥
-            </a>
-            <a class="reply_time" href="#55b896f8b992cd087855852d">3楼•2天前</a>
-          </div>
+              <div class='user_info'>
+                <a class='dark reply_author' href="/user/267735">
+                  残影哥哥
+                </a>
+                <a class="reply_time" href="#55b896f8b992cd087855852d">3楼•2天前</a>
+              </div>
           <div class='user_action'>
       <span>
         <i class="fa up_btn
