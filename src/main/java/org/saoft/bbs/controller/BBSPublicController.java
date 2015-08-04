@@ -1,12 +1,9 @@
 package org.saoft.bbs.controller;
 
-//import com.wordnik.swagger.annotations.Api;
-//import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.saoft.bbs.entities.Message;
 import org.saoft.bbs.entities.Topic;
-import org.saoft.bbs.entities.User;
 import org.saoft.bbs.service.MessageService;
 import org.saoft.bbs.service.TopicService;
 import org.saoft.bbs.service.UserService;
@@ -91,11 +88,19 @@ public class BBSPublicController extends GlobalController {
 
     @ApiOperation(value = "my messages")
     @RequestMapping(value = "my/messages", method = RequestMethod.GET)
-    String messages() {
+    String messages(Model model) {
         //未读消息
-//        messageServi
+        Pageable pageable = new PageRequest(0, 20);
+        Page<Message> unKnownMessage = messageService.unKnownMessage(getUserDetailId(),pageable);
+        List<Message> messageList = unKnownMessage.getContent();
+        for (Message message : messageList) {
+            message.setStatus(true);
+        }
+        messageService.saveBatch(messageList.iterator());
         //过往消息
-
+        Page<Message> knownMessage = messageService.unKnownMessage(getUserDetailId(),pageable);
+        model.addAttribute("knownMessage", knownMessage);
+        model.addAttribute("unKnownMessage", unKnownMessage);
         return "messages";
     }
 

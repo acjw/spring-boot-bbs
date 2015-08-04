@@ -2,10 +2,8 @@ package org.saoft.bbs.controller;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.saoft.bbs.entities.PointsRecord;
-import org.saoft.bbs.entities.Reply;
-import org.saoft.bbs.entities.Topic;
-import org.saoft.bbs.entities.User;
+import org.saoft.bbs.entities.*;
+import org.saoft.bbs.service.MessageService;
 import org.saoft.bbs.service.PointsRecordService;
 import org.saoft.bbs.service.ReplyService;
 import org.saoft.bbs.support.AjaxResultMap;
@@ -27,6 +25,8 @@ public class ReplyController extends GlobalController {
     ReplyService replyService;
     @Autowired
     PointsRecordService pointsRecordService;
+    @Autowired
+    MessageService messageService;
 
     @ResponseBody
     @ApiOperation("reply")
@@ -45,7 +45,10 @@ public class ReplyController extends GlobalController {
                     reply.setReply(new Reply(reply_id));
                 }
             }
+            //创建回复
             replyService.create(reply);
+            //生成消息
+            messageService.create(getUserDetailId(),reply_id);
             pointsRecordService.create(getUserDetailId(), 5, "回复帖子得分");
         }
         AjaxResultMap resultMap = new AjaxResultMap();
