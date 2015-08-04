@@ -42,6 +42,9 @@ public class BBSPublicController extends GlobalController {
     String index(Model model) {
         model.addAttribute("topicList", topicList(10).getContent());
         model.addAttribute("userPointTOp10", userService.list4points(10));
+        //无人回复的话题
+        List<Topic> zeroReply = topicService.findByReplyIsZero();
+        model.addAttribute("zeroReply", zeroReply);
         return "index";
     }
 

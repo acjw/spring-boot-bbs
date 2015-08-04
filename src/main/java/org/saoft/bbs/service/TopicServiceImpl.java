@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 
 /**
  * Created by saoft on 15/7/31.
@@ -37,6 +39,16 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public Page<Topic> findAll(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public List<Topic> findByAuthorIdIsAndIdNot(Long authorId, Long id,int limit) {
+        return repository.findByAuthorIdIsAndIdNotOrderByModifyDateTimeDesc(authorId, id, limit);
+    }
+
+    @Override
+    public List<Topic> findByReplyIsZero() {
+        return repository.findByReplyIs(0);
     }
 
 

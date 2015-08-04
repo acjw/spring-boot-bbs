@@ -4,11 +4,19 @@ import org.saoft.bbs.entities.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by saoft on 15/8/3.
  */
-@Repository
-public interface ReplyRepository extends JpaRepository<Reply, Long> {
+interface ReplyRepositoryCustom {
 
+}
+@Repository
+public interface ReplyRepository extends JpaRepository<Reply, Long>,ReplyRepositoryCustom {
+
+    List<Reply> findByTopicId(Long topicId);
+
+    Long countByTopicIdIs(Long topicId);
 
 }

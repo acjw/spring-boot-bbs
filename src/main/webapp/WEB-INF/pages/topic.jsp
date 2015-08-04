@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ocpsoft" uri="http://ocpsoft.org/prettytime/tags" %>
 <%@ taglib prefix="markdown4j" uri="http://saoft.org/markdown4j/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,7 +14,7 @@
 
   <jsp:include page="public/header.jsp"></jsp:include>
 
-  <title>投了她，就要关心她 - 理财范社区</title>
+  <title>${topic.title}</title>
 
   <meta content="_csrf" name="csrf-param">
   <meta content="K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc" name="csrf-token">
@@ -27,15 +28,7 @@
   <div id='sidebar'>
       <jsp:include page="public/author.jsp"/>
       <jsp:include page="public/author_other_topic.jsp"/>
-
-    <div class='panel'>
-      <div class='header'>
-        <span class='col_fade'>无人回复的话题</span>
-      </div>
-      <div class='inner'>
-        <p>无</p>
-      </div>
-    </div>
+      <jsp:include page="public/col_fade.jsp"/>
   </div>
 
   <div id='content'>
@@ -86,807 +79,59 @@
     </div>
     <div class='panel'>
       <div class='header'>
-        <span class='col_fade'>13 回复</span>
+        <span class='col_fade'>${fn:length(replyList)} 回复</span>
       </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply1" reply_id="55b87c80b992cd0878558511" reply_to_id="">
-        <a class="anchor" id="55b87c80b992cd0878558511"></a>
-
-        <div class='author_content'>
-          <a href="/user/338223" class="user_avatar">
-            <img src="/public/avatar/47d2d4209a913f45689ab913162c9e2a"
-                 title="139******37" height="30" width="30" /></a>
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/338223">
-              139******37
-            </a>
-            <a class="reply_time" href="#55b87c80b992cd0878558511">1楼•2天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-338223'>
-          <div class="markdown-text"><p>对的，投资了当然会关心，网上“每一个理财范的信息”。</p>
-          </div>
-        </div>
-        <div class='clearfix'>
+        <c:forEach var="reply" items="${replyList}" varStatus="status">
+            <div class='cell reply_area reply_item user_${reply.sponsor.userLevel}' id="reply${status.index+1}" reply_id="${reply.reply.id}" reply_to_id="">
+                <a class="anchor" id="${reply.reply.id}"></a>
+                <div class='author_content'>
+                  <a href="/user/${reply.sponsor.id}" class="user_avatar">
+                      <div class="avatar">${reply.sponsor.email}</div></a>
+                  <div class='user_info'>
+                    <a class='dark reply_author' href="/user/${reply.sponsor.id}">
+                        ${reply.sponsor.nickname}
+                    </a>
+                    <a class="reply_time" href="#${reply.reply.id}">${status.index+1}楼•<ocpsoft:prettytime date="${reply.replyDateTime}" locale="zh_CN" /></a>
+                  </div>
+                  <div class='user_action'>
+                  <span>
+                    <i class="fa up_btn
+                      fa-thumbs-o-up
+                      invisible" title="喜欢"></i>
+                    <span class="up-count"></span>
+                  </span>
+                  <span>
+                      <i class="fa fa-reply reply2_btn" title="回复"></i>
+                  </span>
+                  </div>
+                </div>
+                <div class='reply_content from-338223'>
+                  <div class="markdown-text">
+                      <markdown4j:markdown4j input="${reply.content}"/>
+                  </div>
+                </div>
+                <div class='clearfix'>
           <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
+            <form class='reply2_form reply_form' action='/${topic.id}/reply' method='post'>
               <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b87c80b992cd0878558511'/>
+              <input type='hidden' name='reply_id' value='${reply.reply.id}'/>
 
               <div class='markdown_editor in_editor'>
                 <div class='markdown_in_editor'>
             <textarea class='span8 editor reply_editor'
                       id="reply2_editor_55b87c80b992cd0878558511" name='r_content' rows='4'></textarea>
-
                   <div class='editor_buttons'>
                     <input class='span-primary reply2_submit_btn submit_btn'
                            type="submit" data-id='55b87c80b992cd0878558511' data-loading-text="回复中.." value="回复">
                   </div>
                 </div>
-
               </div>
-
             </form>
 
           </div>
         </div>
-      </div>
-      <div class='cell reply_area reply_item  user_star
-  '
-           id="reply2" reply_id="55b88c8eb992cd0878558525" reply_to_id="">
-        <a class="anchor" id="55b88c8eb992cd0878558525"></a>
-
-        <div class='author_content'>
-          <a href="/user/188162" class="user_avatar">
-            <img src="/public/avatar/9c3b7873f8a60c73c39ebc5a5b230f59"
-                 title="爱吃泡馍的虫子" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/188162">
-              爱吃泡馍的虫子
-            </a>
-            <a class="reply_time" href="#55b88c8eb992cd0878558525">2楼•2天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-188162'>
-          <div class="markdown-text"><p>醉了！</p></div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-            <form class='reply2_form' action='/${topic.id}/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b88c8eb992cd0878558525'/>
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55b88c8eb992cd0878558525" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55b88c8eb992cd0878558525' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item  user_star' id="reply3" reply_id="55b896f8b992cd087855852d" reply_to_id="">
-        <a class="anchor" id="55b896f8b992cd087855852d"></a>
-        <div class='author_content'>
-          <a href="/user/267735" class="user_avatar">
-            <img src="/public/avatar/e9d6fe881e37c876f3937d5d7957693c"
-                 title="残影哥哥" height="30" width="30" /></a>
-              <div class='user_info'>
-                <a class='dark reply_author' href="/user/267735">
-                  残影哥哥
-                </a>
-                <a class="reply_time" href="#55b896f8b992cd087855852d">3楼•2天前</a>
-              </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-267735'>
-          <div class="markdown-text"><p>我一天上好几次社区</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b896f8b992cd087855852d'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55b896f8b992cd087855852d" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55b896f8b992cd087855852d' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply4" reply_id="55b8be8ab992cd0878558561" reply_to_id="">
-        <a class="anchor" id="55b8be8ab992cd0878558561"></a>
-
-        <div class='author_content'>
-          <a href="/user/288011" class="user_avatar">
-            <img src="/public/avatar/099cbfd8feb0f2f41aa56adc0b115ff2"
-                 title="子然的小愚" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/288011">
-              子然的小愚
-            </a>
-            <a class="reply_time" href="#55b8be8ab992cd0878558561">4楼•2天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-288011'>
-          <div class="markdown-text"><p>楼主，你这段话很煽情啊～乍一看，还以为楼主和理财范谈恋爱了。哇哈哈O(∩_∩)O</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b8be8ab992cd0878558561'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55b8be8ab992cd0878558561" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55b8be8ab992cd0878558561' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply5" reply_id="55b8c12fb992cd0878558568" reply_to_id="">
-        <a class="anchor" id="55b8c12fb992cd0878558568"></a>
-
-        <div class='author_content'>
-          <a href="/user/182645" class="user_avatar">
-            <img src="/public/avatar/9c4efb580811334e66c0e3eff9d1f7ed"
-                 title="180******82" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/182645">
-              180******82
-            </a>
-            <a class="reply_time" href="#55b8c12fb992cd0878558568">5楼•2天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-182645'>
-          <div class="markdown-text"><p>煽是煽了点，或多或少谁不这样呢！</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b8c12fb992cd0878558568'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55b8c12fb992cd0878558568" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55b8c12fb992cd0878558568' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply6" reply_id="55b8db27b992cd0878558578" reply_to_id="55b8c12fb992cd0878558568">
-        <a class="anchor" id="55b8db27b992cd0878558578"></a>
-
-        <div class='author_content'>
-          <a href="/user/227119" class="user_avatar">
-            <img src="/public/avatar/34f14ac33f36666b68771107163bef74"
-                 title="瓶子" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/227119">
-              瓶子
-            </a>
-            <a class="reply_time" href="#55b8db27b992cd0878558578">6楼•2天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-227119'>
-          <div class="markdown-text"><ol>
-            <li>@180******82 有道理，都一样，每天不上去转转，感觉缺点啥似的，😄</li>
-          </ol>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b8db27b992cd0878558578'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55b8db27b992cd0878558578" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55b8db27b992cd0878558578' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply7" reply_id="55b9613fb992cd0878558599" reply_to_id="">
-        <a class="anchor" id="55b9613fb992cd0878558599"></a>
-
-        <div class='author_content'>
-          <a href="/user/361626" class="user_avatar">
-            <img src="/public/avatar/d0e55f5291bc92fdd30a4690ab49cc17"
-                 title="落英缤纷" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/361626">
-              落英缤纷
-            </a>
-            <a class="reply_time" href="#55b9613fb992cd0878558599">7楼•1天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-361626'>
-          <div class="markdown-text"><p>每天来看看</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55b9613fb992cd0878558599'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55b9613fb992cd0878558599" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55b9613fb992cd0878558599' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply8" reply_id="55ba043fb992cd087855868f" reply_to_id="">
-        <a class="anchor" id="55ba043fb992cd087855868f"></a>
-
-        <div class='author_content'>
-          <a href="/user/28166" class="user_avatar">
-            <img src="/public/avatar/77b85c0990841f394600a1590e2d931a"
-                 title="138******19" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/28166">
-              138******19
-            </a>
-            <a class="reply_time" href="#55ba043fb992cd087855868f">8楼•1天前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-28166'>
-          <div class="markdown-text"><p>比谈恋爱还痴去情</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55ba043fb992cd087855868f'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55ba043fb992cd087855868f" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55ba043fb992cd087855868f' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item  user_star
-  '
-           id="reply9" reply_id="55ba2a61b992cd08785586a0" reply_to_id="55ba043fb992cd087855868f">
-        <a class="anchor" id="55ba2a61b992cd08785586a0"></a>
-
-        <div class='author_content'>
-          <a href="/user/317678" class="user_avatar">
-            <img src="/public/avatar/ad157d856b6ed943451bedd722a2bb78"
-                 title="狐狸妈妈" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/317678">
-              狐狸妈妈
-            </a>
-            <a class="reply_time" href="#55ba2a61b992cd08785586a0">9楼•19小时前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-317678'>
-          <div class="markdown-text"><p>@138******19  真是这样的。比吸毒还上瘾~~~</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55ba2a61b992cd08785586a0'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55ba2a61b992cd08785586a0" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55ba2a61b992cd08785586a0' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply10" reply_id="55bb114ab992cd08785586f0" reply_to_id="">
-        <a class="anchor" id="55bb114ab992cd08785586f0"></a>
-
-        <div class='author_content'>
-          <a href="/user/28166" class="user_avatar">
-            <img src="/public/avatar/77b85c0990841f394600a1590e2d931a"
-                 title="138******19" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/28166">
-              138******19
-            </a>
-            <a class="reply_time" href="#55bb114ab992cd08785586f0">10楼•3小时前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-28166'>
-          <div class="markdown-text"><p>比吸毒还上瘾？？？</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55bb114ab992cd08785586f0'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55bb114ab992cd08785586f0" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55bb114ab992cd08785586f0' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item  user_star
-  '
-           id="reply11" reply_id="55bb18e8b992cd08785586fb" reply_to_id="">
-        <a class="anchor" id="55bb18e8b992cd08785586fb"></a>
-
-        <div class='author_content'>
-          <a href="/user/211636" class="user_avatar">
-            <img src="/public/avatar/93663216e402aea99479701ee47c1531"
-                 title="czm" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/211636">
-              czm
-            </a>
-            <a class="reply_time" href="#55bb18e8b992cd08785586fb">11楼•2小时前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-211636'>
-          <div class="markdown-text"><p>呵呵</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55bb18e8b992cd08785586fb'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55bb18e8b992cd08785586fb" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55bb18e8b992cd08785586fb' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply12" reply_id="55bb194db992cd08785586ff" reply_to_id="">
-        <a class="anchor" id="55bb194db992cd08785586ff"></a>
-
-        <div class='author_content'>
-          <a href="/user/19019" class="user_avatar">
-            <img src="/public/avatar/16d459c4b261f3015061a7cc7362851c"
-                 title="shuangdao" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/19019">
-              shuangdao
-            </a>
-            <a class="reply_time" href="#55bb194db992cd08785586ff">12楼•2小时前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-        </span>
-      </span>
-
-      <span>
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-19019'>
-          <div class="markdown-text"><p>感同身受！</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55bb194db992cd08785586ff'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55bb194db992cd08785586ff" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55bb194db992cd08785586ff' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div class='cell reply_area reply_item
-  '
-           id="reply13" reply_id="55bb3744b992cd087855874f" reply_to_id="">
-        <a class="anchor" id="55bb3744b992cd087855874f"></a>
-
-        <div class='author_content'>
-          <a href="/user/186520" class="user_avatar">
-            <img src="/public/avatar/a195b15745592550de39db38ad420628"
-                 title="155******02" height="30" width="30" /></a>
-
-          <div class='user_info'>
-            <a class='dark reply_author' href="/user/186520">
-              155******02
-            </a>
-            <a class="reply_time" href="#55bb3744b992cd087855874f">13楼•6分钟前</a>
-          </div>
-          <div class='user_action'>
-      <span>
-        <i class="fa up_btn
-          fa-thumbs-o-up
-          invisible" title="喜欢"></i>
-        <span class="up-count">
-
-        </span>
-      </span>
-
-      <span>
-
-          <i class="fa fa-reply reply2_btn" title="回复"></i>
-
-      </span>
-          </div>
-        </div>
-        <div class='reply_content from-186520'>
-          <div class="markdown-text"><p>每天都应该看看，关注有什么消息，有什么好项目</p>
-          </div>
-        </div>
-        <div class='clearfix'>
-          <div class='reply2_area'>
-
-            <form class='reply2_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-              <input type='hidden' name='_csrf' value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
-              <input type='hidden' name='reply_id' value='55bb3744b992cd087855874f'/>
-
-              <div class='markdown_editor in_editor'>
-                <div class='markdown_in_editor'>
-            <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_55bb3744b992cd087855874f" name='r_content' rows='4'></textarea>
-
-                  <div class='editor_buttons'>
-                    <input class='span-primary reply2_submit_btn submit_btn'
-                           type="submit" data-id='55bb3744b992cd087855874f' data-loading-text="回复中.." value="回复">
-                  </div>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-
+            </div>
+        </c:forEach>
     </div>
 
 
@@ -895,24 +140,19 @@
         <span class='col_fade'>添加回复</span>
       </div>
       <div class='inner reply'>
-        <form id='reply_form' action='/55b87beeb992cd0878558510/reply' method='post'>
-
+        <form class="reply_form" id='reply_form' action='/${topic.id}/reply' method='post'>
           <div class='markdown_editor in_editor'>
             <div class='markdown_in_editor'>
               <textarea class='editor' name='r_content' rows='8'></textarea>
-
               <div class='editor_buttons'>
                 <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.." value="回复">
               </div>
             </div>
-
           </div>
-
           <input type='hidden' name='_csrf' id="_csrf" value='K0D3Q979-jiQpBaoVa2iw11GDG6sl8wfBVhc'/>
         </form>
       </div>
     </div>
-
   </div>
 
   <div class="replies_history">
@@ -920,13 +160,13 @@
     <div class="anchor"></div>
   </div>
 
-
-
   <!-- markdown editor -->
   <script src="/static/js/editor.min.js"></script>
+    <script src="/static/plugins/jquery.form.min.js"></script>
 
   <script>
     $(document).ready(function () {
+
       // 获取所有回复者name
       var allNames = $('.reply_author').map(function (idx, ele) {
         return $(ele).text().trim();
@@ -1094,7 +334,13 @@
               });
       // END 用户 hover 在回复框时才显示点赞按钮
 
-
+      $('.reply_form ').ajaxForm(function (data) {
+        if (data.code==200) {
+          location.href = "/topic/${topic.id}";
+        }else{
+          alert(data.msssage+data.msgErr);
+        }
+      });
     });
 
   </script>

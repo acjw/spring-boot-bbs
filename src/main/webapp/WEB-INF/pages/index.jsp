@@ -54,7 +54,7 @@
                     <div class="avatar">${topic.author.email}</div>
                 </a>
               <span class="reply_count pull-left">
-                <span class="count_of_replies" title="回复数">14</span>
+                <span class="count_of_replies" title="回复数">${topic.reply}</span>
                 <span class="count_seperator">/</span>
                 <span class="count_of_visits" title='点击数'>${topic.visits}</span>
               </span>

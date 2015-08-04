@@ -53,7 +53,7 @@ public class UploaderController extends GlobalController{
 
             String temp = upImagesPath+"/"+username+"/" + fileName + partRightType;
 
-            String localhost = request.get().getLocalName();
+            String localhost = "http://"+request.get().getLocalName();
             int port = request.get().getLocalPort();
             if (port != 80) {
                 localhost += ":" + port;

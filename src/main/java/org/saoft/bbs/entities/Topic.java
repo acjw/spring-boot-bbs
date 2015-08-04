@@ -32,12 +32,22 @@ public class Topic extends GlobalEntity {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="userId")
     private User author;
-    private Integer visits;
+    private Integer visits=0;
+    private Integer reply=0;/**回复数*/
 
     private String title;
     private String content;
     private Date publishDateTime;
     private Date modifyDateTime;
+
+    public Topic() {
+
+    }
+
+    public Topic(Long id) {
+        this.id = id;
+    }
+
 
     public void build(TopicViewObject object,long authorId){
         this.top = false;

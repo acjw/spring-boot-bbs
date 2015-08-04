@@ -18,7 +18,7 @@ import java.util.Date;
 public class User extends GlobalEntity {
 
     public enum Level{
-        start,profile
+        star,official
     }
 
     private String userLevel;/**官方用户 vip 普通*/
@@ -51,9 +51,9 @@ public class User extends GlobalEntity {
         this.lastLoginDateTime = null;
         int seed = ((int)(Math.random()*10))/3;
         if (seed == 1) {
-            this.userLevel = Level.profile.toString();
+            this.userLevel = Level.official.toString();
         }else if (seed == 2) {
-            this.userLevel = Level.start.toString();
+            this.userLevel = Level.star.toString();
         }else{
             this.userLevel = "";
         }
