@@ -4,8 +4,10 @@ package org.saoft.bbs.controller;
 //import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import org.saoft.bbs.entities.Message;
 import org.saoft.bbs.entities.Topic;
 import org.saoft.bbs.entities.User;
+import org.saoft.bbs.service.MessageService;
 import org.saoft.bbs.service.TopicService;
 import org.saoft.bbs.service.UserService;
 import org.saoft.support.GlobalController;
@@ -31,6 +33,9 @@ public class BBSPublicController extends GlobalController {
     TopicService topicService;
     @Autowired
     UserService userService;
+    @Autowired
+    MessageService messageService;
+
     private Page<Topic> topicList(int number) {
         Pageable pageable = new PageRequest(0,number);
         Page<Topic> topics = topicService.findAll(pageable);
@@ -40,7 +45,7 @@ public class BBSPublicController extends GlobalController {
     @ApiOperation(value = "indexPage")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     String index(Model model) {
-        model.addAttribute("topicList", topicList(10).getContent());
+        model.addAttribute("topicList", topicList(20).getContent());
         model.addAttribute("userPointTOp10", userService.list4points(10));
         //无人回复的话题
         List<Topic> zeroReply = topicService.findByReplyIsZero();
@@ -87,6 +92,10 @@ public class BBSPublicController extends GlobalController {
     @ApiOperation(value = "my messages")
     @RequestMapping(value = "my/messages", method = RequestMethod.GET)
     String messages() {
+        //未读消息
+//        messageServi
+        //过往消息
+
         return "messages";
     }
 

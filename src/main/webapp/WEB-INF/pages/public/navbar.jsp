@@ -12,6 +12,7 @@
         <li><a href='/'>首页</a></li>
         <li>
           <a href='/my/messages'>
+            <span class='big messages_count'>1</span>
             未读消息
           </a>
         </li>

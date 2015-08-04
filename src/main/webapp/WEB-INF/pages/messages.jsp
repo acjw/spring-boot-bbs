@@ -97,29 +97,6 @@
     </div>
 
 
-
-
-    <!--
-    <div class='panel'>
-      <div class='inner ads'>
-
-
-
-          <a href="http://www.licaifan.com/activity/page?view=fanlive_entrance" target="_blank" class="banner sponsor_outlink"
-        data-label="Fan Live">
-            <img src="/public/images/fanlive.jpg">
-          </a>
-
-      </div>
-    </div>
-    -->
-
-
-
-
-
-
-
     <div class='panel'>
       <div class='header'>
         <span class='col_fade'>友情社区</span>
@@ -127,22 +104,11 @@
       <div class='inner'>
         <ol class="friendship-community">
           <li>
-            <a href="https://www.licaifan.com/" target="_blank">
+            <a href="https://www.saoft.com/" target="_blank">
               英雄计划 - 真诚透明的互联网理财平台
             </a>
           </li>
           <div class="sep10"></div>
-          <!--<li>
-            <a href="http://golangtc.com/" target="_blank">
-              <img src="/public/images/golangtc-logo.png">
-            </a>
-          </li>
-          <div class="sep10"></div>
-          <li>
-            <a href="http://phphub.org/" target="_blank">
-              <img src="/public/images/phphub-logo.png">
-            </a>
-          </li>-->
         </ol>
       </div>
     </div>
@@ -159,9 +125,30 @@
         </ul>
       </div>
 
-      <div class='inner'>
-        <p>无消息</p>
+
+      <div class='cell message' message_id='55c0435ab992cd0878558bff'>
+
+
+		<span>
+			<a href="/user/380422" target='_blank'>183******05</a>
+			回复了你的话题
+			<a href="/topic/55bb2cfcb992cd0878558731#55c0435ab992cd0878558bfe" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+		</span>
+
+
+
+
+
+
+	<span class="marked_icon mark_read_btn">
+		<img class='unread'
+             src='/public/images/checkmark_icon&16.png'
+             title='消息已读'
+                />
+	</span>
+
       </div>
+
 
     </div>
     <div class='panel'>
@@ -169,8 +156,100 @@
         <span class='col_fade'>过往信息</span>
       </div>
 
-      <div class='inner'>
-        <p>无消息</p>
+
+      <div class='cell' message_id='55bb5e6eb992cd087855879a'>
+
+
+		<span>
+			<a href="/user/267735" target='_blank'>残影哥哥</a>
+			回复了你的话题
+			<a href="/topic/55bb2cfcb992cd0878558731#55bb5e6eb992cd0878558799" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+		</span>
+
+
+
+
+
+
+        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
+                                       title='消息已读'/></span>
+
+      </div>
+
+      <div class='cell' message_id='55bb5728b992cd0878558781'>
+
+
+		<span>
+			<a href="/user/71448" target='_blank'>小丫头</a>
+			回复了你的话题
+			<a href="/topic/55bb2cfcb992cd0878558731#55bb5728b992cd0878558780" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+		</span>
+
+
+
+
+
+
+        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
+                                       title='消息已读'/></span>
+
+      </div>
+
+      <div class='cell' message_id='55bb4e39b992cd0878558770'>
+
+
+		<span>
+			<a href="/user/211636" target='_blank'>czm</a>
+			回复了你的话题
+			<a href="/topic/55bb2cfcb992cd0878558731#55bb4e39b992cd087855876f" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+		</span>
+
+
+
+
+
+
+        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
+                                       title='消息已读'/></span>
+
+      </div>
+
+      <div class='cell' message_id='55bb38e6b992cd087855875a'>
+
+
+		<span>
+			<a href="/user/188162" target='_blank'>爱吃泡馍的虫子</a>
+			回复了你的话题
+			<a href="/topic/55bb2cfcb992cd0878558731#55bb38e6b992cd0878558759" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+		</span>
+
+
+
+
+
+
+        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
+                                       title='消息已读'/></span>
+
+      </div>
+
+      <div class='cell' message_id='55bb2e57b992cd0878558739'>
+
+
+		<span>
+			<a href="/user/288011" target='_blank'>子然的小愚</a>
+			回复了你的话题
+			<a href="/topic/55bb2cfcb992cd0878558731#55bb2e57b992cd0878558738" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+		</span>
+
+
+
+
+
+
+        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
+                                       title='消息已读'/></span>
+
       </div>
 
     </div>

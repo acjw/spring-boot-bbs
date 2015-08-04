@@ -6,6 +6,7 @@ import org.markdown4j.Markdown4jProcessor;
 import org.saoft.bbs.ViewObject.TopicViewObject;
 import org.saoft.bbs.entities.Reply;
 import org.saoft.bbs.entities.Topic;
+import org.saoft.bbs.service.PointsRecordService;
 import org.saoft.bbs.service.ReplyService;
 import org.saoft.bbs.service.TopicService;
 import org.saoft.bbs.support.AjaxResultMap;
@@ -33,6 +34,8 @@ public class TopicController extends GlobalController {
     private TopicService topicService;
     @Autowired
     private ReplyService replyService;
+    @Autowired
+    PointsRecordService pointsRecordService;
 
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
@@ -43,18 +46,19 @@ public class TopicController extends GlobalController {
         Topic topic = new Topic();
         topic.build(topicViewObject, getUserDetailId());
         topicService.save(topic);
-
+        pointsRecordService.create(getUserDetailId(), 5, "新增一个主题帖子得分");
         return resultMap;
     }
 
     @RequestMapping(value = "{id}",method = RequestMethod.GET)
     @ApiOperation(value = "查看一个主题",response = TopicViewObject.class)
     String topicDetail(@PathVariable Long id,Model model) {
+        //改变消息的状态
         Topic topic = topicService.findOne(id);
         List<Reply> replyList = replyService.findByTopicId(id);
 
         Integer visits = topic.getVisits();
-        visits = visits == null?1:visits+1;
+        visits = visits == null ? 1 : visits + 1;
         topic.setVisits(visits);
         topicService.update(topic);
 
@@ -62,7 +66,7 @@ public class TopicController extends GlobalController {
         //回复列表
         model.addAttribute("replyList", replyList);
         //作者的其他话题
-        List<Topic> topicList = topicService.findByAuthorIdIsAndIdNot(topic.getAuthor().getId(), id,5);
+        List<Topic> topicList = topicService.findByAuthorIdIsAndIdNot(topic.getAuthor().getId(), id, 5);
         model.addAttribute("topicList", topicList);
         //无人回复的话题
         List<Topic> zeroReply = topicService.findByReplyIsZero();

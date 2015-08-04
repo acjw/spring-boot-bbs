@@ -13,10 +13,10 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "topic")
+@Table(name = "message")
 public class Message extends GlobalEntity {
 
-    private Boolean Status;/**接收的状态*/
+    private Boolean status;/**接收的状态*/
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="userId")
@@ -25,5 +25,7 @@ public class Message extends GlobalEntity {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="replyId")
     private Reply reply;/** 回复的id*/
+
+    private Date birth;
 
 }
