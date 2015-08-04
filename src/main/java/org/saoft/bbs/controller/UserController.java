@@ -3,7 +3,9 @@ package org.saoft.bbs.controller;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import org.saoft.bbs.entities.Reply;
 import org.saoft.bbs.entities.User;
+import org.saoft.bbs.service.ReplyService;
 import org.saoft.bbs.service.UserService;
 import org.saoft.bbs.support.AjaxResultMap;
 import org.saoft.support.GlobalController;
@@ -25,6 +27,8 @@ public class UserController extends GlobalController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ReplyService replyService;
 
     @ApiOperation(value = "login",response = AjaxResultMap.class)
     @ResponseBody
@@ -37,7 +41,11 @@ public class UserController extends GlobalController {
         if (username!=null && password!=null || password.length() !=40) {
             User user = userService.findOne(username.trim());
             if (user!=null && password.equals(user.getPassword())) {
-                session.get().setAttribute(SaoUserDetail.SESSION_USER,new SaoUserDetail(user));
+                SaoUserDetail detail = new SaoUserDetail(user);
+                Long lo = replyService.unReadMessageCount(detail.getId());
+                lo = lo == null ? 0l : lo;
+                detail.setUnReadMessageNumber(lo);
+                session.get().setAttribute(SaoUserDetail.SESSION_USER, detail);
                 user.setLastLoginDateTime(new Date());
                 userService.update(user);
                 return resultMap;

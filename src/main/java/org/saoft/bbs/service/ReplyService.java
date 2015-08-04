@@ -15,6 +15,8 @@ public interface ReplyService {
     Reply findOne(Long id);
 
     boolean exists(Long id);
+    //未读消息数量
+    Long unReadMessageCount(Long userId);
 
     //未读消息
     Page<Reply> unKnownMessage(Long userId,Pageable pageable);

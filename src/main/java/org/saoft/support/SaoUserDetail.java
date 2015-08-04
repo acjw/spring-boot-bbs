@@ -20,6 +20,7 @@ public class SaoUserDetail implements Serializable {
     /** 用户名*/
     private String username;
     private String userLevel;
+    private Long unReadMessageNumber = 0l;
     /** 昵称*/
     private String nickname;
     private String signature;

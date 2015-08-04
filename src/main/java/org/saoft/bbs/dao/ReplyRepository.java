@@ -20,4 +20,6 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>,JpaSpecifica
 
     Long countByTopicIdIs(Long topicId);
 
+    Long countByStatusIsAndReceiverIdIs(boolean status,Long receiverId);
+
 }

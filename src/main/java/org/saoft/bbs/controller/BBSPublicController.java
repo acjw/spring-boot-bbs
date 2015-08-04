@@ -8,6 +8,7 @@ import org.saoft.bbs.service.ReplyService;
 import org.saoft.bbs.service.TopicService;
 import org.saoft.bbs.service.UserService;
 import org.saoft.support.GlobalController;
+import org.saoft.support.SaoUserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -89,16 +90,18 @@ public class BBSPublicController extends GlobalController {
     @ApiOperation(value = "my messages")
     @RequestMapping(value = "my/messages", method = RequestMethod.GET)
     String messages(Model model) {
+        SaoUserDetail detail = getUserDetail();
+        detail.setUnReadMessageNumber(replyService.unReadMessageCount(detail.getId()));
         //未读消息
         Pageable pageable = new PageRequest(0, 20);
         Page<Reply> unKnownMessage = replyService.unKnownMessage(getUserDetailId(),pageable);
+        //过往消息
+        Page<Reply> knownMessage = replyService.knownMessage(getUserDetailId(), pageable);
         List<Reply> messageList = unKnownMessage.getContent();
         for (Reply reply : messageList) {
             reply.setStatus(true);
         }
         replyService.saveBatch(messageList);
-        //过往消息
-        Page<Reply> knownMessage = replyService.unKnownMessage(getUserDetailId(),pageable);
         model.addAttribute("readMessage", knownMessage);
         model.addAttribute("unReadMessage", unKnownMessage);
         return "messages";

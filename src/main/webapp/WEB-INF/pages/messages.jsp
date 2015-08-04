@@ -24,77 +24,8 @@
 <div id='main'>
   <div id='sidebar'>
 
-    <div class='panel'>
-
-      <div class='header'>
-        <span class='col_fade'>个人信息</span>
-      </div>
-      <div class='inner'>
-        <div class='user_card'>
-          <div>
-
-            <a class='user_avatar' href="/user/373049">
-              <img src="/public/avatar/b7a4f57af0198a33256c43ae67186ef7" title="182******89"/>
-            </a>
-            <span class='user_name'><a class='dark' href="/user/373049">182******89</a></span>
-
-            <div class='board clearfix'>
-              <div class='floor'>
-                <span class='big'>0</span> 积分
-              </div>
-            </div>
-
-            <div class="space clearfix"></div>
-    <span class="signature">
-        “
-
-            这家伙很懒，什么个性签名都没有留下。
-
-        ”
-    </span>
-          </div>
-        </div>
-
-
-        <script>
-          $(document).ready(function () {
-            $('.follow_btn').click(function () {
-              var $me = $(this);
-              var action = $me.attr('action');
-              var params = {
-                follow_id: '55b869dcb992cd08785584f6',
-                _csrf: 'O5ODwq8m-gtVsHqXiloLIykdxTz7Kt84nGI8'
-              };
-              $.post('/user/' + action, params, function (data) {
-                if (data.status === 'success') {
-                  var $btns = $('.follow_btn');
-                  if (action === 'follow') {
-                    $btns.html('取消关注');
-                    $btns.attr('action', 'un_follow');
-                  } else {
-                    $btns.html('加入关注');
-                    $btns.attr('action', 'follow');
-                  }
-                  $btns.toggleClass('btn-success');
-                }
-              }, 'json');
-            });
-          });
-        </script>
-
-
-      </div>
-
-    </div>
-
-
-    <div class="panel">
-      <div class='inner'>
-        <a href='/topic/create' id='create_topic_btn'>
-          <span class='span-success'>发布话题</span>
-        </a>
-      </div>
-    </div>
+    <jsp:include page="public/personal.jsp"/>
+    <jsp:include page="public/topic_create.jsp"/>
 
 
     <div class='panel'>
@@ -124,35 +55,50 @@
           <li class='active'>新消息</li>
         </ul>
       </div>
-      <c:forEach var="unknown" items="${unReadMessage}">
-          <div class='cell message' message_id='${unknown.id}'>
+      <c:if test="${not empty noreadMessage.content}">
+        <c:forEach var="noread" items="${noreadMessage.content}">
+          <div class='cell message' message_id='${noread.id}'>
             <span>
-                <a href="/user/${unknown.sponsor.id}" target='_blank'>${unknown.sponsor.nickname}</a>
+                <a href="/user/${noread.sponsor.id}" target='_blank'>${noread.sponsor.nickname}</a>
                 回复了你的话题
-                <a href="/topic/${unknown.topic.id}#${unknown.id}message" target='_blank'>${unknown.topic.title}</a>
+                <a href="/topic/${noread.topic.id}#${noread.id}message" target='_blank'>${noread.topic.title}</a>
             </span>
             <span class="marked_icon mark_read_btn">
-                <img class='unread' src='/public/images/checkmark_icon&16.png' title='新消息'/>
+                <img class='noread' src='/public/images/checkmark_icon&16.png' title='新消息'/>
             </span>
           </div>
         </c:forEach>
+      </c:if>
+      <c:if test="${ empty noreadMessage.content}">
+        <div class="inner">
+          <p>无</p>
+        </div>
 
+      </c:if>
 
     </div>
     <div class='panel'>
       <div class='header'>
         <span class='col_fade'>过往信息</span>
       </div>
-      <c:forEach var="known" items="${readMessage}">
-        <div class='cell' message_id='${known.id}'>
+    <c:if test="${not empty readMessage.content}">
+      <c:forEach var="read" items="${readMessage.content}">
+        <div class='cell' message_id='${read.id}'>
 		<span>
-			<a href="/user/${known.sponsor.id}" target='_blank'>${known.sponsor.nickname}</a>
+			<a href="/user/${read.sponsor.id}" target='_blank'>${read.sponsor.nickname}</a>
 			回复了你的话题
-			<a href="/topic/${known.topic.id}#${known.id}message" target='_blank'>${known.topic.title}</a>
+			<a href="/topic/${read.topic.id}#${read.id}message" target='_blank'>${read.topic.title}</a>
 		</span>
           <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png' title='消息已读'/></span>
         </div>
       </c:forEach>
+     </c:if>
+      <c:if test="${empty readMessage.content}">
+        <div class="inner">
+          <p>无</p>
+        </div>
+      </c:if>
+
     </div>
   </div>
 

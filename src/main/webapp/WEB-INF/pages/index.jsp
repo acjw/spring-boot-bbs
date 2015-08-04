@@ -22,7 +22,10 @@
 <!-- navbar -->
 <jsp:include page="public/navbar.jsp"></jsp:include>
 <div id='main'>
-  <div id='sidebar'>
+    <div id='sidebar'>
+      <c:if test="${empty session_user}">
+          <jsp:include page="public/nosignin.jsp"/>
+      </c:if>
     <jsp:include page="public/personal.jsp"/>
     <jsp:include page="public/topic_create.jsp"/>
     <jsp:include page="public/col_fade.jsp"/>

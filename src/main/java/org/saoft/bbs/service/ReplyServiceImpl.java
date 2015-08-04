@@ -16,7 +16,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -38,6 +37,11 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public boolean exists(Long id) {
         return repository.exists(id);
+    }
+
+    @Override
+    public Long unReadMessageCount(Long userId) {
+        return repository.countByStatusIsAndReceiverIdIs(false,userId);
     }
 
     @Override

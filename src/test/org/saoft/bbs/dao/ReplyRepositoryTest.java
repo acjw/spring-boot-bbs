@@ -32,4 +32,10 @@ public class ReplyRepositoryTest {
         Long count = repository.countByTopicIdIs(1l);
         Assert.notNull(count);
     }
+
+    @Test
+    public void countStatus(){
+        Long count = repository.countByStatusIsAndReceiverIdIs(true,1l);
+        Assert.notNull(count);
+    }
 }
