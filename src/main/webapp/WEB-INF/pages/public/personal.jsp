@@ -1,4 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<c:if test="${not empty session_user}">
 <div class='panel'>
 
   <div class='header'>
@@ -8,10 +10,10 @@
     <div class='user_card'>
       <div>
 
-        <a class='user_avatar' href="/user/373049">
+        <a class='user_avatar' href="/user/${session_user.id}">
           <div class="avatar">${session_user.email}</div>
         </a>
-        <span class='user_name'><a class='dark' href="/user/${session_user.id}">182******89</a></span>
+        <span class='user_name'><a class='dark' href="/user/${session_user.id}">${session_user.nickname}</a></span>
 
         <div class='board clearfix'>
           <div class='floor'>
@@ -50,3 +52,4 @@
   </div>
 
 </div>
+</c:if>

@@ -8,6 +8,7 @@ import org.saoft.bbs.service.ReplyService;
 import org.saoft.bbs.service.TopicService;
 import org.saoft.bbs.support.AjaxResultMap;
 import org.saoft.support.GlobalController;
+import org.saoft.support.SaoUserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,10 @@ public class ReplyController extends GlobalController {
             replyService.create(reply);
             //生成消息
             pointsRecordService.create(getUserDetailId(), 5, "回复帖子得分");
+            //统分
+            pointsRecordService.countByUserPoints(getUserDetailId());
+            SaoUserDetail detail = getUserDetail();
+            detail.setUnReadMessageNumber(replyService.unReadMessageCount(detail.getId()));
         }
         AjaxResultMap resultMap = new AjaxResultMap();
         return resultMap;
