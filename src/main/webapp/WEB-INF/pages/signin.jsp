@@ -5,13 +5,13 @@
 <head>
   <!-- meta -->
   <meta charset="utf-8"/>
-  <meta name='description' content='英雄计划社区－真诚透明的理财交流社区'>
+  <meta name='description' content='英雄计划社区－英雄计划 app 问题 心得 交流社区'>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="keywords" content="英雄计划，理财，P2P，互联网金融"/>
+  <meta name="keywords" content="英雄计划，约束自己，成才，日常计划 总结"/>
 
   <jsp:include page="public/header.jsp"></jsp:include>
 
-  <title>英雄计划社区－真诚透明的理财交流社区</title>
+  <title>英雄计划社区－英雄计划 app 问题 心得 交流社区</title>
 
   <meta content="_csrf" name="csrf-param">
   <meta content="o1FrAKKl-q7p3D2XgD9NRSk_QsYhk3z7uhjk" name="csrf-token">
@@ -49,7 +49,7 @@
         <span class='col_fade'>关于</span>
       </div>
       <div class='inner'>
-        <p>英雄计划社区－真诚透明的理财交流社区</p>
+        <p>英雄计划社区－英雄计划 app 问题 心得 交流社区</p>
 
         <p>在这里你可以：</p>
         <ul>

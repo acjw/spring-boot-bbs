@@ -6,13 +6,13 @@
 <head>
   <!-- meta -->
   <meta charset="utf-8"/>
-  <meta name='description' content='英雄计划社区－真诚透明的理财交流社区'>
+  <meta name='description' content='英雄计划社区－英雄计划 app 问题 心得 交流社区'>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="keywords" content="英雄计划，理财，P2P，互联网金融"/>
+  <meta name="keywords" content="英雄计划，约束自己，成才，日常计划 总结"/>
 
   <jsp:include page="public/header.jsp"></jsp:include>
 
-  <title>英雄计划社区－真诚透明的理财交流社区</title>
+  <title>英雄计划社区－英雄计划 app 问题 心得 交流社区</title>
   <meta content="_csrf" name="csrf-param">
   <meta content="QaG0ibLE-ruyKnHmp751QRHLK7q3Ffw99RWI" name="csrf-token">
   <!-- 创建微博 App 的验证信息 -->

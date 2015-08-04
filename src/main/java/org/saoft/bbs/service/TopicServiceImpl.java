@@ -51,5 +51,10 @@ public class TopicServiceImpl implements TopicService {
         return repository.findByReplyIs(0);
     }
 
+    @Override
+    public Topic getOne(Long id) {
+        return repository.getOne(id);
+    }
+
 
 }

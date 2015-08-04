@@ -11,9 +11,9 @@
 <head>
   <!-- meta -->
   <meta charset="utf-8"/>
-  <meta name='description' content='理财范社区－真诚透明的理财交流社区'>
+  <meta name='description' content='约束自己范社区－英雄计划 app 问题 心得 交流社区'>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="keywords" content="理财范，理财，P2P，互联网金融"/>
+  <meta name="keywords" content="约束自己范，约束自己，成才，日常计划 总结"/>
 
 
   <meta name="author" content="yangwt@licaifan.com" />
@@ -31,7 +31,7 @@
   <script src="/public/index.min.c7cfae1e.min.js"></script>
 
 
-  <title>理财范社区－真诚透明的理财交流社区</title>
+  <title>约束自己范社区－英雄计划 app 问题 心得 交流社区</title>
 
   <meta content="_csrf" name="csrf-param">
   <meta content="GJ82JtPQ-_Ldd8zPxAEDzHSKMfh936N9KCLY" name="csrf-token">
@@ -188,7 +188,7 @@
         <ol class="friendship-community">
           <li>
             <a href="https://www.licaifan.com/" target="_blank">
-              理财范 - 真诚透明的互联网理财平台
+              约束自己范 - 真诚透明的互联网约束自己平台
             </a>
           </li>
           <div class="sep10"></div>
@@ -262,7 +262,7 @@
 <div id='footer'>
   <div id='footer_main'>
     <div class="links">
-      © 2015 理财范 All rights reserved
+      © 2015 约束自己范 All rights reserved
       <!--<a class='dark' href='/rss'>RSS</a>
       |
       <a class='dark' href='https://github.com/cnodejs/nodeclub/'>源码地址</a>

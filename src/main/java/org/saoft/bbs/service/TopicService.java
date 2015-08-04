@@ -24,4 +24,6 @@ public interface TopicService {
 
     //无人回复的话题
     List<Topic> findByReplyIsZero();
+
+    Topic getOne(Long id);
 }

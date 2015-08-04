@@ -1,17 +1,17 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <!-- meta -->
   <meta charset="utf-8"/>
-  <meta name='description' content='英雄计划社区－真诚透明的理财交流社区'>
+  <meta name='description' content='英雄计划社区－英雄计划 app 问题 心得 交流社区'>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="keywords" content="英雄计划，理财，P2P，互联网金融"/>
+  <meta name="keywords" content="英雄计划，约束自己，成才，日常计划 总结"/>
 
   <jsp:include page="public/header.jsp"></jsp:include>
 
-  <title>英雄计划社区－真诚透明的理财交流社区</title>
+  <title>英雄计划社区－英雄计划 app 问题 心得 交流社区</title>
 
   <meta content="_csrf" name="csrf-param">
   <meta content="O5ODwq8m-gtVsHqXiloLIykdxTz7Kt84nGI8" name="csrf-token">
@@ -105,7 +105,7 @@
         <ol class="friendship-community">
           <li>
             <a href="https://www.saoft.com/" target="_blank">
-              英雄计划 - 真诚透明的互联网理财平台
+              英雄计划 - 真诚透明的互联网约束自己平台
             </a>
           </li>
           <div class="sep10"></div>
@@ -124,30 +124,18 @@
           <li class='active'>新消息</li>
         </ul>
       </div>
-
-
-      <div class='cell message' message_id='55c0435ab992cd0878558bff'>
-
-
-		<span>
-			<a href="/user/380422" target='_blank'>183******05</a>
-			回复了你的话题
-			<a href="/topic/55bb2cfcb992cd0878558731#55c0435ab992cd0878558bfe" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
-		</span>
-
-
-
-
-
-
-	<span class="marked_icon mark_read_btn">
-		<img class='unread'
-             src='/public/images/checkmark_icon&16.png'
-             title='消息已读'
-                />
-	</span>
-
-      </div>
+      <c:forEach var="unknown" items="${unReadMessage}">
+          <div class='cell message' message_id='${unknown.id}'>
+            <span>
+                <a href="/user/${unknown.sponsor.id}" target='_blank'>${unknown.sponsor.nickname}</a>
+                回复了你的话题
+                <a href="/topic/${unknown.topic.id}#${unknown.id}message" target='_blank'>${unknown.topic.title}</a>
+            </span>
+            <span class="marked_icon mark_read_btn">
+                <img class='unread' src='/public/images/checkmark_icon&16.png' title='新消息'/>
+            </span>
+          </div>
+        </c:forEach>
 
 
     </div>
@@ -155,103 +143,16 @@
       <div class='header'>
         <span class='col_fade'>过往信息</span>
       </div>
-
-
-      <div class='cell' message_id='55bb5e6eb992cd087855879a'>
-
-
+      <c:forEach var="known" items="${readMessage}">
+        <div class='cell' message_id='${known.id}'>
 		<span>
-			<a href="/user/267735" target='_blank'>残影哥哥</a>
+			<a href="/user/${known.sponsor.id}" target='_blank'>${known.sponsor.nickname}</a>
 			回复了你的话题
-			<a href="/topic/55bb2cfcb992cd0878558731#55bb5e6eb992cd0878558799" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
+			<a href="/topic/${known.topic.id}#${known.id}message" target='_blank'>${known.topic.title}</a>
 		</span>
-
-
-
-
-
-
-        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
-                                       title='消息已读'/></span>
-
-      </div>
-
-      <div class='cell' message_id='55bb5728b992cd0878558781'>
-
-
-		<span>
-			<a href="/user/71448" target='_blank'>小丫头</a>
-			回复了你的话题
-			<a href="/topic/55bb2cfcb992cd0878558731#55bb5728b992cd0878558780" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
-		</span>
-
-
-
-
-
-
-        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
-                                       title='消息已读'/></span>
-
-      </div>
-
-      <div class='cell' message_id='55bb4e39b992cd0878558770'>
-
-
-		<span>
-			<a href="/user/211636" target='_blank'>czm</a>
-			回复了你的话题
-			<a href="/topic/55bb2cfcb992cd0878558731#55bb4e39b992cd087855876f" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
-		</span>
-
-
-
-
-
-
-        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
-                                       title='消息已读'/></span>
-
-      </div>
-
-      <div class='cell' message_id='55bb38e6b992cd087855875a'>
-
-
-		<span>
-			<a href="/user/188162" target='_blank'>爱吃泡馍的虫子</a>
-			回复了你的话题
-			<a href="/topic/55bb2cfcb992cd0878558731#55bb38e6b992cd0878558759" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
-		</span>
-
-
-
-
-
-
-        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
-                                       title='消息已读'/></span>
-
-      </div>
-
-      <div class='cell' message_id='55bb2e57b992cd0878558739'>
-
-
-		<span>
-			<a href="/user/288011" target='_blank'>子然的小愚</a>
-			回复了你的话题
-			<a href="/topic/55bb2cfcb992cd0878558731#55bb2e57b992cd0878558738" target='_blank'>出来匝道 这个东西要怎么玩呀 求带</a>
-		</span>
-
-
-
-
-
-
-        <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png'
-                                       title='消息已读'/></span>
-
-      </div>
-
+          <span class="marked_icon"><img src='/public/images/checkmark_icon&16.png' title='消息已读'/></span>
+        </div>
+      </c:forEach>
     </div>
   </div>
 

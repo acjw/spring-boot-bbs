@@ -2,6 +2,7 @@ package org.saoft.bbs.dao;
 
 import org.saoft.bbs.entities.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +14,7 @@ interface ReplyRepositoryCustom {
 
 }
 @Repository
-public interface ReplyRepository extends JpaRepository<Reply, Long>,ReplyRepositoryCustom {
+public interface ReplyRepository extends JpaRepository<Reply, Long>,JpaSpecificationExecutor<Reply>,ReplyRepositoryCustom {
 
     List<Reply> findByTopicId(Long topicId);
 

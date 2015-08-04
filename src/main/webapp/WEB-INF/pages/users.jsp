@@ -4,9 +4,9 @@
 <head>
   <!-- meta -->
   <meta charset="utf-8"/>
-  <meta name='description' content='英雄计划社区－真诚透明的理财交流社区'>
+  <meta name='description' content='英雄计划社区－英雄计划 app 问题 心得 交流社区'>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="keywords" content="英雄计划，理财，P2P，互联网金融"/>
+  <meta name="keywords" content="英雄计划，约束自己，成才，日常计划 总结"/>
 
   <jsp:include page="public/header.jsp"></jsp:include>
 
@@ -126,7 +126,7 @@
         <ol class="friendship-community">
           <li>
             <a href="https://www.licaifan.com/" target="_blank">
-              英雄计划 - 真诚透明的互联网理财平台
+              英雄计划 - 真诚透明的互联网约束自己平台
             </a>
           </li>
           <div class="sep10"></div>

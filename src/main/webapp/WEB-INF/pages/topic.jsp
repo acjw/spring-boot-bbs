@@ -8,9 +8,9 @@
 <head>
   <!-- meta -->
   <meta charset="utf-8"/>
-  <meta name='description' content='理财范社区－真诚透明的理财交流社区'>
+  <meta name='description' content='约束自己范社区－英雄计划 app 问题 心得 交流社区'>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="keywords" content="理财范，理财，P2P，互联网金融"/>
+  <meta name="keywords" content="约束自己范，约束自己，成才，日常计划 总结"/>
 
   <jsp:include page="public/header.jsp"></jsp:include>
 

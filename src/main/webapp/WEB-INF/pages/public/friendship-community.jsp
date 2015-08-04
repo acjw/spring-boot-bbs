@@ -7,7 +7,7 @@
     <ol class="friendship-community">
       <li>
         <a href="https://www.saoft.com/" target="_blank">
-          saoft - 真诚透明的互联网理财平台
+          saoft - 真诚透明的互联网约束自己平台
         </a>
       </li>
       <div class="sep10"></div>

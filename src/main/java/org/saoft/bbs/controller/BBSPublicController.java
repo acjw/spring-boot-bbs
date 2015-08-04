@@ -2,9 +2,9 @@ package org.saoft.bbs.controller;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.saoft.bbs.entities.Message;
+import org.saoft.bbs.entities.Reply;
 import org.saoft.bbs.entities.Topic;
-import org.saoft.bbs.service.MessageService;
+import org.saoft.bbs.service.ReplyService;
 import org.saoft.bbs.service.TopicService;
 import org.saoft.bbs.service.UserService;
 import org.saoft.support.GlobalController;
@@ -31,7 +31,7 @@ public class BBSPublicController extends GlobalController {
     @Autowired
     UserService userService;
     @Autowired
-    MessageService messageService;
+    ReplyService replyService;
 
     private Page<Topic> topicList(int number) {
         Pageable pageable = new PageRequest(0,number);
@@ -91,16 +91,16 @@ public class BBSPublicController extends GlobalController {
     String messages(Model model) {
         //未读消息
         Pageable pageable = new PageRequest(0, 20);
-        Page<Message> unKnownMessage = messageService.unKnownMessage(getUserDetailId(),pageable);
-        List<Message> messageList = unKnownMessage.getContent();
-        for (Message message : messageList) {
-            message.setStatus(true);
+        Page<Reply> unKnownMessage = replyService.unKnownMessage(getUserDetailId(),pageable);
+        List<Reply> messageList = unKnownMessage.getContent();
+        for (Reply reply : messageList) {
+            reply.setStatus(true);
         }
-        messageService.saveBatch(messageList.iterator());
+        replyService.saveBatch(messageList);
         //过往消息
-        Page<Message> knownMessage = messageService.unKnownMessage(getUserDetailId(),pageable);
-        model.addAttribute("knownMessage", knownMessage);
-        model.addAttribute("unKnownMessage", unKnownMessage);
+        Page<Reply> knownMessage = replyService.unKnownMessage(getUserDetailId(),pageable);
+        model.addAttribute("readMessage", knownMessage);
+        model.addAttribute("unReadMessage", unKnownMessage);
         return "messages";
     }
 
